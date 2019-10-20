@@ -11,9 +11,34 @@ class Obra {
 	var property implementosDeGasColocados = 0
 	var property cablesElectricosColocados = 0
 	
+	//LISTA DE OBREROS CONTRATADOS EN LA OBRA
+	const property obreros = []
+	
+	//METODO PARA CONTRATAR A OBRERO
+	method contratarObrero(obrero){
+		obreros.add(obrero)
+	}
+	
+	//METODO PARA DESPEDIR A OBRERO
+	method despedirObrero(obrero){
+		obreros.remove(obrero)
+	}
+	
+	//CONSULTO SI LOS OBREROS ESTAN DISPONIBLES OSEA NO ESTAN DE LICENCIA
+	method obrerosDisponibles(){
+		return obreros.filter({obrero=>not obrero.estaDeLicencia()})
+	}
+	
+	//JORNADA LABORAL
+	method jornadaLaboral(){
+		self.obrerosDisponibles().foreach({obrero=>obrero.jornadaLaboral(self)})
+	}
+	
 	method habitaciones()	
 	method pisos()
 	method banios() 
+	
+	
 }
 
 
