@@ -17,6 +17,8 @@ class Obra {
 	//METODO PARA CONTRATAR A OBRERO
 	method contratarObrero(obrero){
 		obreros.add(obrero)
+		//AGREGO LA OBRA A LA LISTA DE OBRAS DEL OBRERO
+		obrero.agregarObra(self)
 	}
 	
 	//METODO PARA DESPEDIR A OBRERO
@@ -31,8 +33,97 @@ class Obra {
 	
 	//JORNADA LABORAL
 	method jornadaLaboral(){
-		self.obrerosDisponibles().foreach({obrero=>obrero.jornadaLaboral(self)})
+		self.obrerosDisponibles().forEach{obrero=>obrero.jornadaLaboral(self)}
+			
+		
 	}
+	
+	method mandarDeLicencia(obrero){
+		obrero.tomarLicencia()
+	}
+	
+	method levantarLicencia(obrero){
+		obrero.salirDeLaLicencia()
+	}
+	
+	method recibirladrillos(cant){
+		ladrillos += cant
+	}
+	
+	method recibirCanios(cant){
+		metrosDeCanio += cant
+	}
+	
+	method recibirCable(cant){
+		metrosDeCable += cant
+	}
+	
+	method recibirCinta(cant){
+		cinta += cant
+	}
+	
+	method recibirFosforos(cant){
+		fosforos += cant
+	}
+	
+	method recibirArandelas(cant){
+		arandelas += cant
+	}
+	
+	method existeObrero(obrero){
+		return obreros.contains(obrero)
+	}
+	
+	
+	//CONSULTO SI ESTA FINALIZADA CON LAS CONDICIONES SOLICITADAS
+	method estaFinalizada(){
+		return (self.estanMetrosCuadradosConstruidos() && self.aguaInstalada() && self.gasInstalado() && self.cablesInstalados())
+	}
+	
+	method estanMetrosCuadradosConstruidos(){
+		return (metrosCuadradosConstruidos >= (50 * self.habitaciones()))
+	}
+	
+	method aguaInstalada(){
+		return (implementosDeAguaColocados >= (10 * self.banios()))
+	}
+	
+	method gasInstalado(){
+		return (implementosDeGasColocados >= ((8 * self.banios()) + (3 * self.habitaciones()))) 
+	}
+	
+	method cablesInstalados(){
+		return (cablesElectricosColocados >= (50*self.habitaciones()) + (100 * self.pisos()))
+	}
+	
+	method restaPorCobrar(obrero){
+		
+	}
+	
+	method agregarEfectivo(cant){
+		efectivo += cant
+	}
+	
+	method deudaJornalesObrero(obrero){
+		return  obrero.saberDeudaJornales()
+	}
+	
+	
+	
+	method consultarDeudaJornalesObra(obra){
+		
+		var suma
+		obreros.forEach{obrero=> suma = self.deudaJornalesObrero(obrero)}
+		return suma
+	}
+	
+	method pagarJornalObrero(){
+		obreros.forEach{obrero=>obrero.pagarDeuda()}
+		efectivo - self.consultarDeudaJornalesObra(self)
+	}
+	
+	
+	
 	
 	method habitaciones()	
 	method pisos()

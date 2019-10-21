@@ -9,5 +9,7 @@ class  Albanil inherits Obrero{
 		//AGREGO LOS METROS CUADRADOS DE PARED REALIZADOS POR LA JORNADA LABORAL
 		obra.metrosCuadradosConstruidos(obra.metrosCuadradosConstruidos() + 3)
 		
+		jornalesAdeudados +=1
+		
 	}
 }

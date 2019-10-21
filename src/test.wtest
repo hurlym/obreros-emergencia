@@ -1,0 +1,73 @@
+//IMPORTO LAS CLASES NECESARIAS PARA EL TEST
+import obra.*
+import Obrero.*
+import Albanil.*
+import Electricista.*
+import Gasista.*
+import Plomero.*
+
+//DECLARO LOS OBJETOS NECESARIOS PARA EL TEST
+describe "Test Obra"{
+	//CONSTRUCTOR DE OBRA
+	var miObra = new Casa(ladrillos = 1000, metrosDeCanio = 400, fosforos = 8000, arandelas = 500)
+	
+	var alba1 = new Albanil()
+	var alba2 = new Albanil()
+	var gas1 = new Gasista()
+	var gas2 = new Gasista()
+	var Plom = new Plomero()
+	
+	
+	fixture{
+		
+		miObra.contratarObrero(alba1)
+		miObra.contratarObrero(alba2)
+		miObra.contratarObrero(gas1)
+		miObra.contratarObrero(gas2)
+		miObra.contratarObrero(Plom)
+		
+		
+	}
+	
+	test "JornadaLaboral" {
+
+		//PONGO DE LICENCIA AL ABAÑIL NUMERO 2
+		miObra.mandarDeLicencia(alba2)
+		
+		//AGREGO LA JORNADA LABORAL A CADA OBRERO
+		miObra.jornadaLaboral()
+		
+		//assert.equals(900, miObra.ladrillos())
+		//assert.equals(384, miObra.metrosDeCanio())
+		//assert.equals(7960, miObra.fosforos())
+		//assert.equals(470, miObra.arandelas())
+		
+		
+		
+		//SEGUNDA PARTE TEST
+		
+		//SACO DE LICENCIA AL ABAÑIL NUMERO 2
+		miObra.levantarLicencia(alba2)
+		
+		//PONGO DE LICENCIA AL PLOMERO
+		miObra.mandarDeLicencia(Plom)
+		
+		
+		//AGREGO LA JORNADA LABORAL A CADA OBRERO
+		miObra.jornadaLaboral()
+		
+		miObra.agregarEfectivo(100000)
+		
+		
+		assert.equals(4000, miObra.deudaJornalesObrero(alba1))
+		//assert.equals(384, miObra.metrosDeCanio())
+		//assert.equals(7960, miObra.fosforos())
+		//assert.equals(470, miObra.arandelas())
+		
+	}
+	
+	
+	
+}
+
+
