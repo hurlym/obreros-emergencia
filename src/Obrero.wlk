@@ -8,6 +8,8 @@ class Obrero {
 	
 	method jornadaLaboral(obra)
 	
+	method saberDeudaJornales()
+	
 	method tomarLicencia(){estaDeLicencia = true}
 	method salirDeLaLicencia(){estaDeLicencia = false}
 	method agregarObra(obra){
@@ -23,10 +25,9 @@ class Obrero {
 		return jornalesAdeudados
 	}
 	
-	method saberDeudaJornales(){
-		return (4000)
-		//return (2 * uocra.jornalElectricista() )
-	}
+	
+		
+	
 	method pagarDeuda(){
 		jornalesAdeudados = 0
 	}

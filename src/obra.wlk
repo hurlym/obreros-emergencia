@@ -96,7 +96,7 @@ class Obra {
 		return (cablesElectricosColocados >= (50*self.habitaciones()) + (100 * self.pisos()))
 	}
 	
-	method restaPorCobrar(obrero){
+	method restaPorCobrar(){
 		
 	}
 	
@@ -105,21 +105,27 @@ class Obra {
 	}
 	
 	method deudaJornalesObrero(obrero){
+		
+		
 		return  obrero.saberDeudaJornales()
 	}
 	
 	
 	
-	method consultarDeudaJornalesObra(obra){
+	method consultarDeudaJornalesObra(){
 		
-		var suma
-		obreros.forEach{obrero=> suma = self.deudaJornalesObrero(obrero)}
-		return suma
+		
+		return (obreros.sum{obrero=>self.deudaJornalesObrero(obrero)})
+		
 	}
 	
-	method pagarJornalObrero(){
+	
+	
+	method pagarJornalObreros(){
+		efectivo -= self.consultarDeudaJornalesObra()
 		obreros.forEach{obrero=>obrero.pagarDeuda()}
-		efectivo - self.consultarDeudaJornalesObra(self)
+		
+		 
 	}
 	
 	

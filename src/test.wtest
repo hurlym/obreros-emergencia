@@ -16,6 +16,7 @@ describe "Test Obra"{
 	var gas1 = new Gasista()
 	var gas2 = new Gasista()
 	var Plom = new Plomero()
+	var elec1 = new Electricista()
 	
 	
 	fixture{
@@ -25,6 +26,7 @@ describe "Test Obra"{
 		miObra.contratarObrero(gas1)
 		miObra.contratarObrero(gas2)
 		miObra.contratarObrero(Plom)
+		miObra.contratarObrero(elec1)
 		
 		
 	}
@@ -60,9 +62,34 @@ describe "Test Obra"{
 		
 		
 		assert.equals(4000, miObra.deudaJornalesObrero(alba1))
-		//assert.equals(384, miObra.metrosDeCanio())
-		//assert.equals(7960, miObra.fosforos())
-		//assert.equals(470, miObra.arandelas())
+		assert.equals(2000, miObra.deudaJornalesObrero(alba2))
+		assert.equals(6000, miObra.deudaJornalesObrero(gas1))
+		assert.equals(6000, miObra.deudaJornalesObrero(gas2))
+		assert.equals(3000, miObra.deudaJornalesObrero(Plom))
+		assert.equals(7000, miObra.deudaJornalesObrero(elec1))
+		assert.equals(28000, miObra.consultarDeudaJornalesObra())
+		
+		miObra.pagarJornalObreros()
+		
+		assert.equals(0, miObra.deudaJornalesObrero(alba1))
+		assert.equals(0, miObra.deudaJornalesObrero(alba2))
+		assert.equals(0, miObra.deudaJornalesObrero(gas1))
+		assert.equals(0, miObra.deudaJornalesObrero(gas2))
+		assert.equals(0, miObra.deudaJornalesObrero(Plom))
+		assert.equals(0, miObra.deudaJornalesObrero(elec1))
+		assert.equals(0, miObra.consultarDeudaJornalesObra())
+		
+		/*
+		 * 
+		 */
+		
+		//
+		
+		
+		
+		
+		
+		
 		
 	}
 	

@@ -13,8 +13,13 @@ class Electricista inherits Obrero{
 		//AGREGO LOS METROS DE CABLE INSTALADOS
 		obra.cablesElectricosColocados(obra.cablesElectricosColocados() + 4)
 		
-		jornalesAdeudados +=1
+		jornalesAdeudados +=  1
 		
+	}
+	
+	override method saberDeudaJornales(){
+		
+		return (jornalesAdeudados * uocra.jornalElectricista())
 	}
 	
 	

@@ -1,4 +1,6 @@
 import Obrero.*
+import uocra.*
+
 
 class  Albanil inherits Obrero{
 	
@@ -11,5 +13,10 @@ class  Albanil inherits Obrero{
 		
 		jornalesAdeudados +=1
 		
+	}
+	
+	override method saberDeudaJornales(){
+		
+		return (jornalesAdeudados * uocra.jornalAlbanil())
 	}
 }

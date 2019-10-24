@@ -1,4 +1,5 @@
 import Obrero.*
+import uocra.*
 
 class Gasista inherits Obrero{
 	
@@ -9,5 +10,12 @@ class Gasista inherits Obrero{
 		
 		//AGREGO LA INSTALACION DE LOS CAÑOS POR LA JORNADA LABORAL
 		obra.implementosDeGasColocados(obra.implementosDeGasColocados() + 3)
+		
+		jornalesAdeudados +=1
+	}
+	
+	override method saberDeudaJornales(){
+		
+		return (jornalesAdeudados * uocra.jornalEspecialistaBanioCocina())
 	}
 }
